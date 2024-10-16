@@ -91,7 +91,7 @@ const ProductDetail = () => {
                 -1 ? (
                 <>
                   <p className="mt-3 text-green-600">
-                    This Product is already added to cart!
+                    Product is added to Cart 😊
                   </p>
                   <button
                     onClick={() => navigate("/cart")}

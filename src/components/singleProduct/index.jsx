@@ -51,7 +51,7 @@ const SingleProduct = ({ singleProduct }) => {
             Go to Cart
           </button>
           <p className="mt-1 text-green-600">
-            This Product is already added to cart!
+            Product is added to Cart 😊
           </p>
         </>
       ) : (
