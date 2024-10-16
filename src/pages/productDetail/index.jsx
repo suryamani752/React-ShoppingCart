@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ShoppingCartContext } from "../../context";
+import SpinnerLoader from "../../components/loader";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -15,6 +16,7 @@ const ProductDetail = () => {
     handleAddToCart,
   } = useContext(ShoppingCartContext);
   //   console.log(id);
+  const navigate = useNavigate();
 
   async function fetchProductDetails() {
     try {
@@ -40,7 +42,7 @@ const ProductDetail = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <p>Please wait....we fetching the product details</p>
+        <SpinnerLoader />
       </div>
     );
   }
@@ -84,12 +86,28 @@ const ProductDetail = () => {
               <p className="text-xl font-bold">${productDetail?.price}</p>
             </div>
             <div>
-              <button
-                onClick={() => handleAddToCart(productDetail)}
-                className="mt-5 min-w-[200px] px-4 py-3 border border-[#333] bg-transparent text-sm font-semibold rounded"
-              >
-                Add to Cart
-              </button>
+              {productDetail &&
+              cartItems.findIndex((item) => item.id === productDetail.id) >
+                -1 ? (
+                <>
+                  <p className="mt-3 text-green-600">
+                    This Product is already added to cart!
+                  </p>
+                  <button
+                    onClick={() => navigate("/cart")}
+                    className="mt-3 min-w-[200px] px-4 py-3 border border-[#333] bg-transparent text-sm font-semibold rounded"
+                  >
+                    Go to Cart
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={() => handleAddToCart(productDetail)}
+                  className="mt-5 min-w-[200px] px-4 py-3 border border-[#333] bg-transparent text-sm font-semibold rounded"
+                >
+                  Add to cart
+                </button>
+              )}
             </div>
           </div>
         </div>

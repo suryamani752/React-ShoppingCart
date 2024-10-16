@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { ShoppingCartContext } from "../../context";
 
 const SingleProduct = ({ singleProduct }) => {
+  const{cartItems,handleAddToCart} = useContext(ShoppingCartContext)
   // console.log(singleProduct)
   const navigate = useNavigate();
 
@@ -37,6 +39,30 @@ const SingleProduct = ({ singleProduct }) => {
       >
         View Details
       </button>
+      {singleProduct &&
+      cartItems.findIndex((item) => item.id === singleProduct.id) > -1 ? (
+        <>
+          
+          <button
+            onClick={() => navigate("/cart")}
+            className="px-5 mt-5 w-full py-2 rounded-none bg-black text-white font-bold text-lg"
+
+          >
+            Go to Cart
+          </button>
+          <p className="mt-1 text-green-600">
+            This Product is already added to cart!
+          </p>
+        </>
+      ) : (
+        <button
+          onClick={() => handleAddToCart(singleProduct)}
+          className="px-5 mt-5 w-full py-2 rounded-none bg-black text-white font-bold text-lg"
+
+        >
+          Add to cart
+        </button>
+      )}
     </div>
   );
 };
