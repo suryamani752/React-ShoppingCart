@@ -20,7 +20,10 @@ const ProductLists = () => {
   return (
     <section className="py-12 bg-white sm:py-16 lg:py-20">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-        <div className="sticky top-5 right-0 cursor-pointer z-10" onClick={() => navigate("/cart")}>
+        <div
+          className="sticky top-5 right-0 cursor-pointer z-10"
+          onClick={() => navigate("/cart")}
+        >
           <div className="relative">
             <div className="absolute top-0 right-0">
               <div className="right-3 w-[20px] h-[20px] bg-slate-200 rounded-full text-center text-orange-600 font-bold">
@@ -37,7 +40,7 @@ const ProductLists = () => {
             Our Featured Products
           </h2>
         </div>
-        <div className="grid grid-cols-2 gap-5 mt-10 lg:mt-16 lg:gap-8 lg:grid-cols-4">
+        <div className="grid md:grid-cols-2 gap-3 mt-10 lg:mt-16 lg:gap-8 lg:grid-cols-4">
           {listOfProducts && listOfProducts.length > 0 ? (
             listOfProducts.map((singleProduct) => (
               <SingleProduct
