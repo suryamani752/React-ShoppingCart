@@ -25,7 +25,7 @@ const ProductLists = () => {
           onClick={() => navigate("/cart")}
         >
           <div className="relative">
-            <div className="absolute top-0 right-0">
+            <div className="absolute md:top-0 top-5 right-0">
               <div className="right-3 w-[20px] h-[20px] bg-slate-200 rounded-full text-center text-orange-600 font-bold">
                 {lengthOfCartItems}
               </div>
